@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cumpleaños Sorpresa - María José</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ffd6e8 0%, #ffe8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .invitation {
+            background: linear-gradient(180deg, #fef9f5 0%, #fff 100%);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 0;
+            box-shadow: 0 20px 60px rgba(255, 182, 193, 0.4);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 40px;
+            width: 80px;
+            height: 120px;
+            z-index: 10;
+            display: none;
+        }
+        
+        .ribbon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff9ec4 0%, #ff7eb3 50%, #ff9ec4 100%);
+            border-radius: 0 0 50% 50%;
+            box-shadow: inset 0 -3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .ribbon::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(135deg, #ff9ec4 0%, #ff7eb3 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+        
+        .ribbon-knot {
+            position: absolute;
+            top: -15px;
+            right: 10px;
+            width: 100px;
+            height: 80px;
+            z-index: 11;
+            display: none;
+        }
+        
+        .knot-left, .knot-right {
+            position: absolute;
+            width: 50px;
+            height: 35px;
+            background: linear-gradient(135deg, #ff9ec4 0%, #ff7eb3 100%);
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(255, 126, 179, 0.4);
+        }
+        
+        .knot-left {
+            left: -10px;
+            top: 15px;
+            transform: rotate(-25deg);
+        }
+        
+        .knot-right {
+            right: -10px;
+            top: 15px;
+            transform: rotate(25deg);
+        }
+        
+        .knot-center {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(135deg, #ff7eb3 0%, #ff9ec4 100%);
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 6px rgba(255, 126, 179, 0.5);
+        }
+        
+        .content {
+            padding: 60px 40px 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .flower {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+        }
+        
+        .flower-petal {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #f5e6d3;
+            border-radius: 50%;
+        }
+        
+        .flower-center {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ffb6c1;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        
+        .flower1 {
+            top: 20px;
+            left: 20px;
+        }
+        
+        .flower2 {
+            bottom: 80px;
+            right: 25px;
+            width: 70px;
+            height: 70px;
+        }
+        
+        .flower3 {
+            top: 180px;
+            left: 15px;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .petal1 { top: 5px; left: 50%; transform: translateX(-50%); }
+        .petal2 { top: 15px; right: 8px; transform: rotate(45deg); }
+        .petal3 { top: 50%; right: 5px; transform: translateY(-50%) rotate(90deg); }
+        .petal4 { bottom: 15px; right: 8px; transform: rotate(135deg); }
+        .petal5 { bottom: 5px; left: 50%; transform: translateX(-50%) rotate(180deg); }
+        .petal6 { bottom: 15px; left: 8px; transform: rotate(225deg); }
+        .petal7 { top: 50%; left: 5px; transform: translateY(-50%) rotate(270deg); }
+        .petal8 { top: 15px; left: 8px; transform: rotate(315deg); }
+        
+        .surprise-tag {
+            display: inline-block;
+            background: white;
+            color: #ff7eb3;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            box-shadow: 0 3px 15px rgba(255, 126, 179, 0.3);
+            margin-bottom: 25px;
+            margin-top: 15px;
+            border: 2px solid #ffe8f0;
+        }
+        
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 72px;
+            font-weight: 700;
+            color: #ff7eb3;
+            margin: 20px 0;
+            line-height: 1;
+        }
+        
+        .age {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            color: #ffb6c1;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: #ff7eb3;
+            margin: 30px auto;
+        }
+        
+        .info {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            color: #555;
+            line-height: 2;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .info-line {
+            margin: 12px 0;
+        }
+        
+        .info-highlight {
+            color: #333;
+            font-weight: 700;
+        }
+        
+        .location {
+            font-size: 13px;
+            margin-top: 25px;
+            color: #666;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .rsvp-section {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #fff5f8 0%, #ffe8f0 100%);
+            border-radius: 15px;
+            border: 2px solid #ffb6c1;
+        }
+        
+        .rsvp-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .rsvp-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            color: #ff7eb3;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
+        }
+        
+        .rsvp-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #ff7eb3;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .picnic-pattern {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: 
+                linear-gradient(45deg, 
+                    transparent 25%, #fff9e6 25%, #fff9e6 50%, 
+                    transparent 50%, transparent 75%, #fff9e6 75%),
+                linear-gradient(45deg, 
+                    transparent 25%, #ffe8c2 25%, #ffe8c2 50%, 
+                    transparent 50%, transparent 75%, #ffe8c2 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            opacity: 0;
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: 30px;
+            background: #c8d5b9;
+            border-radius: 0 50% 50% 0;
+            bottom: 100px;
+            left: 30px;
+            opacity: 0.7;
+            transform: rotate(-30deg);
+        }
+        
+        .leaf::after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 25px;
+            background: #a8b89a;
+            left: 5px;
+            top: 5px;
+            transform: rotate(30deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation">
+        <div class="ribbon-knot">
+            <div class="knot-left"></div>
+            <div class="knot-right"></div>
+            <div class="knot-center"></div>
+        </div>
+        <div class="ribbon"></div>
+        
+        <div class="flower flower1">
+            <div class="flower-petal petal1"></div>
+            <div class="flower-petal petal2"></div>
+            <div class="flower-petal petal3"></div>
+            <div class="flower-petal petal4"></div>
+            <div class="flower-petal petal5"></div>
+            <div class="flower-petal petal6"></div>
+            <div class="flower-petal petal7"></div>
+            <div class="flower-petal petal8"></div>
+            <div class="flower-center"></div>
+        </div>
+        
+        <div class="flower flower2">
+            <div class="flower-petal petal1"></div>
+            <div class="flower-petal petal2"></div>
+            <div class="flower-petal petal3"></div>
+            <div class="flower-petal petal4"></div>
+            <div class="flower-petal petal5"></div>
+            <div class="flower-petal petal6"></div>
+            <div class="flower-petal petal7"></div>
+            <div class="flower-petal petal8"></div>
+            <div class="flower-center"></div>
+        </div>
+        
+        <div class="flower flower3">
+            <div class="flower-petal petal1"></div>
+            <div class="flower-petal petal2"></div>
+            <div class="flower-petal petal3"></div>
+            <div class="flower-petal petal4"></div>
+            <div class="flower-petal petal5"></div>
+            <div class="flower-petal petal6"></div>
+            <div class="flower-petal petal7"></div>
+            <div class="flower-petal petal8"></div>
+            <div class="flower-center"></div>
+        </div>
+        
+        <div class="leaf"></div>
+        
+        <div class="content">
+            <h1 class="title">Tarde de Picnic</h1>
+            
+            <div class="surprise-tag">¡Sorpresa!</div>
+            
+            <div class="name">Majo</div>
+            
+            <div class="age">¡Cumple 17!</div>
+            
+            <div class="divider"></div>
+            
+            <div class="info">
+                <div class="info-line"><span class="info-highlight">Domingo | 09 de Noviembre</span></div>
+                <div class="info-line"><span class="info-highlight">3:00 PM</span></div>
+                <div class="info-line" style="margin-top: 20px;">Te esperamos en:</div>
+                <div class="info-line" style="margin-top: 15px; font-size: 12px;">
+                    <a href="https://maps.app.goo.gl/5qqVrW2qvBKzSd6x9" target="_blank" style="color: #ff7eb3; text-decoration: none; font-weight: 700;">📍 Ver ubicación en el mapa</a>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="rsvp-section">
+                <div class="rsvp-icon">📱</div>
+                <div class="rsvp-title">Por favor confirmar asistencia</div>
+                <div class="rsvp-subtitle">¡Los esperamos!</div>
+            </div>
+        </div>
+        
+        <div class="picnic-pattern"></div>
+    </div>
+</body>
+</html>
